@@ -24,13 +24,21 @@ const AlertScreen = () => {
   };
   const showPrompt = () => {
     //SOLO PARA IOS
-    Alert.prompt('¿Esta Seguro?');
+    Alert.prompt(
+      '¿Esta Seguro?',
+      'Esta accion no se puede revertir',
+      (valor: string) => console.log('info:', typeof valor),
+      'plain-text',
+      'Hola mundo',
+      'number-pad', //tipo de teclado
+    );
   };
 
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Alerts" />
       <Button title="Mostrar Alerta" onPress={showAlert} />
+      <View style={{height: 10}} />
       <Button title="Mostrar Prompt" onPress={showPrompt} />
     </View>
   );
