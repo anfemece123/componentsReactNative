@@ -17,7 +17,7 @@ export const useAnimation = () => {
       toValue: opacity,
       duration: 300,
       useNativeDriver: true,
-    }).start(() => console.log('ANIMACION TERMINO'));
+    }).start();
     // Animated.timing(position, {
     //   toValue: -100,
     //   duration: 800,
