@@ -34,7 +34,12 @@ const TextInputScreen = () => {
           <HeaderTitle title="Text inputs" />
 
           <TextInput
-            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.border,
+              opacity: 0.6,
+              color: colors.text,
+            }}
             placeholder="ingrese su nombre"
             placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion
@@ -43,7 +48,12 @@ const TextInputScreen = () => {
           />
 
           <TextInput
-            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.border,
+              opacity: 0.6,
+              color: colors.text,
+            }}
             placeholder="ingrese su enamil"
             placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion
@@ -65,7 +75,12 @@ const TextInputScreen = () => {
           <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
           <TextInput
-            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
+            style={{
+              ...stylesScreen.inputStyle,
+              borderColor: colors.border,
+              // opacity: 0.6,
+              color: colors.text,
+            }}
             placeholder="ingrese su telefono"
             placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion

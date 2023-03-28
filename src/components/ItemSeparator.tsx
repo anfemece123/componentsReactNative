@@ -10,9 +10,10 @@ const ItemSeparator = () => {
     <View
       style={{
         borderBottomWidth: 1,
-        opacity: 0.3,
+        opacity: 0.2,
         marginVertical: 8,
-        backgroundColor: colors.border,
+        // backgroundColor: colors.border,
+        borderColor: colors.border,
       }}
     />
   );
