@@ -1,9 +1,14 @@
 import {Animated, PanResponder, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useRef} from 'react';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 export default function Animation102Screen() {
   const pan = useRef(new Animated.ValueXY()).current;
+
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -28,7 +33,13 @@ export default function Animation102Screen() {
     <View style={styles.container}>
       <Animated.View
         {...panResponder.panHandlers}
-        style={[pan.getLayout(), styles.purpleBox]}
+        style={[
+          {
+            ...pan.getLayout(),
+            ...styles.purpleBox,
+            backgroundColor: colors.primary,
+          },
+        ]}
       />
     </View>
   );
@@ -41,7 +52,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   purpleBox: {
-    backgroundColor: '#75CEDB',
     width: 150,
     height: 150,
     borderRadius: 4,

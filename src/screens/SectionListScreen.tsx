@@ -1,8 +1,9 @@
 import {SectionList, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import HeaderTitle from '../components/HeaderTitle';
 import {styles} from '../theme/AppTheme';
 import ItemSeparator from '../components/ItemSeparator';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 interface Casas {
   casa: string;
@@ -112,21 +113,27 @@ const casas: Casas[] = [
 ];
 
 export default function SectionListScreen() {
+  const {
+    theme: {colors, dividerColor},
+  } = useContext(ThemeContext);
+
   return (
     <View style={{...styles.globalMargin, flex: 1}}>
       <SectionList
         sections={casas}
-        renderItem={({item}) => <Text>{item}</Text>}
+        renderItem={({item}) => (
+          <Text style={{color: colors.text}}>{item}</Text>
+        )}
         keyExtractor={(item, index) => item + index}
         ListHeaderComponent={() => <HeaderTitle title="Section List" />} // titulo del section list
         ListFooterComponent={() => (
-          <View style={{marginBottom: 60}}>
+          <View style={{marginBottom: 60, backgroundColor: colors.background}}>
             <HeaderTitle title={'Total de casas' + casas.length} />
           </View>
         )} //Lo que se renderiza al finalizar
         stickySectionHeadersEnabled={true} //para que se mantenga el titulo de la lista
         renderSectionHeader={({section}) => (
-          <View style={{backgroundColor: 'white'}}>
+          <View style={{backgroundColor: colors.background}}>
             <HeaderTitle title={section.casa} />
           </View>
         )} // en cada uno de las listas

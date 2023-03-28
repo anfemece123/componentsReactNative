@@ -7,11 +7,12 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import HeaderTitle from '../components/HeaderTitle';
 import {styles} from '../theme/AppTheme';
 import {useForm} from '../hooks/useForm';
 import CustomSwitch from '../components/CustomSwitch';
+import {ThemeContext} from '../context/themeContext/ThemeContext';
 
 const TextInputScreen = () => {
   const {form, onChange, isSubscribed} = useForm({
@@ -21,6 +22,10 @@ const TextInputScreen = () => {
     isSubscribed: false,
   });
 
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   return (
     <KeyboardAvoidingView //para que se muestre el input cuando
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -29,16 +34,18 @@ const TextInputScreen = () => {
           <HeaderTitle title="Text inputs" />
 
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
             placeholder="ingrese su nombre"
+            placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion
             autoCapitalize="words"
             onChangeText={value => onChange(value, 'name')}
           />
 
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
             placeholder="ingrese su enamil"
+            placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion
             autoCapitalize="none"
             onChangeText={value => onChange(value, 'email')}
@@ -58,11 +65,13 @@ const TextInputScreen = () => {
           <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
           <TextInput
-            style={stylesScreen.inputStyle}
+            style={{...stylesScreen.inputStyle, borderColor: colors.border}}
             placeholder="ingrese su telefono"
+            placeholderTextColor={colors.border}
             autoCorrect={false} //no hace autocorreccion
             onChangeText={value => onChange(value, 'phone')}
             keyboardType="phone-pad" //teclado numerico
+            keyboardAppearance="dark"
           />
         </View>
         <View style={{height: 100}} />
@@ -76,7 +85,7 @@ export default TextInputScreen;
 const stylesScreen = StyleSheet.create({
   inputStyle: {
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.3)',
+
     height: 40,
     paddingHorizontal: 10,
     borderRadius: 10,
